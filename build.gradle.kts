@@ -1,6 +1,3 @@
-import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
-import org.gradle.testing.jacoco.tasks.JacocoReport
-
 plugins {
     kotlin("jvm") version "2.3.10"
     kotlin("plugin.serialization") version "2.3.10"
@@ -19,10 +16,6 @@ repositories {
 
 springBoot {
     mainClass.set("at.aau.serg.SpringAppKt")
-}
-
-jacoco {
-    toolVersion = "0.8.13"
 }
 
 val coverageTargets = listOf(

@@ -4,6 +4,7 @@ import at.aau.serg.models.GameResult
 import at.aau.serg.services.GameResultService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RestController
 class LeaderboardController(
     private val gameResultService: GameResultService
 ) {
-
     @GetMapping
-    fun getLeaderboard(): List<GameResult> =
-        gameResultService.getGameResults().sortedWith(compareBy({ -it.score }, { it.id }))
-
+    fun getLeaderboard(@RequestParam(required = false) rank: Int? = null): List<GameResult> {
+        val sortedResults = gameResultService.getGameResults().sortedWith(
+            compareByDescending<GameResult> { it.score } // Score wird vergliechen
+                .thenBy { it.timeInSeconds } // Zeit wrid vergliechen
+        )
+        return sortedResults;
+    }
 }
