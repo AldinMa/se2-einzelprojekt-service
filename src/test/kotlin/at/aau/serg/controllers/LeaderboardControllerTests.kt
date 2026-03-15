@@ -38,7 +38,7 @@ class LeaderboardControllerTests {
     }
 
     @Test
-    fun test_getLeaderboard_sameScore_CorrectTimeandSecondsSorting() { // timeInSeconds im test angepasst(vom kleinsten zum größten)
+    fun test_getLeaderboard_sameScore_CorrectTimeInSecondsSorting() { // timeInSeconds im test angepasst(vom kleinsten zum größten)
         val first = GameResult(1, "first", 20, 10.0)
         val second = GameResult(2, "second", 20, 15.0)
         val third = GameResult(3, "third", 20, 20.0)
